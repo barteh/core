@@ -1,3 +1,8 @@
+# Build folders
+/commonServices
+/react
+/utils
+
 # Logs
 logs
 *.log
