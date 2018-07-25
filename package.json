@@ -4,7 +4,7 @@
   "description": "a common library for barteh based projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Test Done\" && exit 0",
+    "test": "npm run build && echo \"Test Done\" && exit 0",
     "build": "npm run lint && babel src -d ./ && babel index.d.js -o index.js",
     "up": "npm publish --access public --scope=barteh",
     "lint": "./node_modules/.bin/eslint src/**/*.js && echo \"eslint code is ok"
