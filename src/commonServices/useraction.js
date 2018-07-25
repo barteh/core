@@ -1,6 +1,6 @@
 
 import {Server} from '@barteh/as-service';
-import { AUserInfo } from "./userinfo";
+
 
 
  
