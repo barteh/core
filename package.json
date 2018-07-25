@@ -7,7 +7,7 @@
     "test": "npm run build",
     "build": "npm run lint && babel src -d ./ && babel index.d.js -o index.js",
     "up": "npm publish --access public --scope=barteh",
-    "lint": "./node_modules/.bin/eslint src/**/*.js && echo \"eslint code is ok"
+    "lint": "./node_modules/.bin/eslint src/**/*.js && echo \"eslint code is ok\""
   },
   "dependencies": {
     "@barteh/as-service": "^1.0.237",
