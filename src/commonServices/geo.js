@@ -34,7 +34,7 @@ export class AGeo{
             geo.firstime =false;
 
             geo.getChiledList("IR")
-            .then(a=>{
+            .then(()=>{
                
             geo.sub.next(geo);
            }) 
@@ -45,7 +45,7 @@ export class AGeo{
 
     getChiledList(parent,refresh){
         
-        return  new Promise((a,b)=>{
+        return  new Promise((a/*,b*/)=>{
             if (!this.ChiledList[parent]||refresh){
                 this. loadChiledList(parent,refresh)
                .then(z=>{
@@ -62,11 +62,11 @@ export class AGeo{
         });
     }
 
-    loadChiledList(parent,refresh){
+    loadChiledList(parent/*,refresh*/){
 
         this.ChiledList[parent.toString()]=null;
 
-        return new Promise((a,b)=>{
+        return new Promise((a/*,b*/)=>{
 
             //Server.controller("useredit","countusertogeo",{geoid:parent})
             Server.controller("plancontroller","sel_geo",{geoid:parent})
@@ -94,7 +94,7 @@ export class AGeo{
         //}else {     
                 if(layer+1<this.layerCount){
                 this.getChiledList(obj.geoid)
-                .then(a=>{
+                .then(()=>{
                   
                     this.layer_list[layer+1]=this.ChiledList[obj.geoid] ;
                   
@@ -113,7 +113,7 @@ export class AGeo{
         }
     }
     get when(){
-        return new Promise((a,b)=>{
+        return new Promise((a/*,b*/)=>{
                 a( AGeo.instance);
         })
     }

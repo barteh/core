@@ -71,7 +71,7 @@ export function doLogout(done) {
     //  else
           done(r.data);
     })
-    .catch(r => {
+    .catch(() => {
 
       done(500);
     });

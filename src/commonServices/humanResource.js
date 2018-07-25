@@ -10,8 +10,8 @@ export function AHumanResources(refresh){
     if(refresh||firsttime){
         firsttime=false;
         Server.dvm("dvm_App_o_Human_Resource")
-        .then(a=>{
-        sub.next(r.data)
+        .then(r=>{
+        sub.next(r.data);
         })
     }
     return sub;

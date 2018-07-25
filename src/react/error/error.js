@@ -1,5 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+
+import PropTypes from 'prop-types';
+
 class ErrorBoundary extends React.Component {
   static logger = (e, i) => {
     console.log(`Barteh Error: component error, ${e},${i}`);
@@ -15,8 +18,7 @@ class ErrorBoundary extends React.Component {
     this.setState({ hasError: true });
     
     // You can also log the error to an error reporting service
-    console.log(85)
-    if (!this.props.dontLog) ErrorBoundary.logger(error, info);
+        if (!this.props.dontLog) ErrorBoundary.logger(error, info);
     if (this.props.handler) this.props.handler();
   }
 
@@ -32,6 +34,13 @@ class ErrorBoundary extends React.Component {
     }
     return this.props.children;
   }
+}
+
+ErrorBoundary.propTypes={
+  children:PropTypes.any.isRequired,
+  component:PropTypes.Component.isRequired,
+  handler:PropTypes.func,
+  dontLog:PropTypes.bool
 }
 
 export default ErrorBoundary;

@@ -1,5 +1,5 @@
 import React from "react";
-import { doLogin } from "../commonServices/useraction";
+import { doLogin } from "../../commonServices/useraction";
 
 import {
 
@@ -10,8 +10,9 @@ import {
   TextField
 } from "@material-ui/core";
 
-import Captcha from "./captcha";
+import Captcha from "./Captcha";
 
+import PropTypes from 'prop-types';
 
 
 class login extends React.Component {
@@ -23,7 +24,8 @@ class login extends React.Component {
     type: 1
   };
   lock = false;
-  handleLogin = (event, type) => {
+  handleLogin = (event) => {
+    
     event.preventDefault(); //برای submit
     if (this.lock) return;
 
@@ -197,6 +199,13 @@ success = 0,
       </form>
     );
   }
+}
+
+login.propTypes={
+  loginSuccess:PropTypes.func,
+  doLogin:PropTypes.func,
+  done:PropTypes.func
+
 }
 
 export default login;

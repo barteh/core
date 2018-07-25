@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
-import UserAvatar from "./user-avatar";
+import UserAvatar from "./UserAvatar";
 //import { Manager, Target, Popper } from "react-popper";
-
-import UserMenu from './user-menu';
+import PropTypes from 'prop-types';
+import UserMenu from './UserMenu';
 class User extends PureComponent {
   constructor(props) {
     super(props);
@@ -52,4 +52,7 @@ class User extends PureComponent {
   }
 }
 
+User.propTypes={
+  userinfo:PropTypes.any
+};
 export default User;

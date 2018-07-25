@@ -21,7 +21,7 @@ export class AOrgChart {
     static types = [];
 
     getChilsOfParent(parentid, scopeid) {
-     
+
         return this
             .orgChartList
             .filter(a => {
@@ -32,7 +32,7 @@ export class AOrgChart {
             })
     }
     getOrgchartListAsTree() {
-       
+
         this.staff_tree = [];
         this.org_tree = [];
         this.branch_tree = [];
@@ -96,30 +96,17 @@ export class AOrgChart {
 
     }
 
-    static getChart(refresh, error) {
-console.log('get chart',error);
+    static getChart(/*refresh, error*/) {
+        
         AOrgChart.sub = AOrgChart.sub || new Rx.BehaviorSubject();
 
         let chart = new AOrgChart();
-        // if (AOrgChart.firstime || refresh) {
-        //     AOrgChart.firstime = false;
-            
-
-        //     // chart
-        //     //     .load(error)
-        //     //     .then(a => {
-
-        //     //         AOrgChart
-        //     //             .sub
-        //     //             .next(chart);
-        //     //     });
-
-        // }
+        // if (AOrgChart.firstime || refresh) {     AOrgChart.firstime = false;     //
+        // chart     //     .load(error)     //     .then(a => {     // AOrgChart     //
+        //             .sub     //             .next(chart);     // }); }
 
         return chart;
-        // this
-        //     .sub
-        //     .filter(a => a!==undefined);
+        // this     .sub     .filter(a => a!==undefined);
     }
     constructor() {
         if (!AOrgChart.instance) 
@@ -212,31 +199,34 @@ console.log('get chart',error);
     }
 
     load(error) {
-        console.log(780)
+        
         this.orgChartList = [];
         return new Promise((resp, rej) => {
-     
+
             Server.dvm("DVM_App_o_ochart", {
                 o: 'boxid,parent,typeid'
             }, {cache: false}).then((r) => {
-            
+
                 if (r.data) {
                     this.orgChartList = r.data;
                     this.getOrgchartListAsTree()
-                    //this.selectedOrgChart=this.getTopChart();
-                   // AOrgChart.getTypes();
+                    //this.selectedOrgChart=this.getTopChart(); AOrgChart.getTypes();
                     resp(this);
-                    
-                } else {}
 
-            }).catch(rej=>{
-                console.log('500/000/000')
+                } else {
+                    rej(r.status);
+                    if(error)
+                    error(r.status)
+                }
+
+            }).catch(e => {
+                rej(e.status)
             })
         });
 
     }
     changeSelected(boxid) {
-        console.log(565656565);
+        
         let x = this
             .orgChartList
             .filter(a => a.boxid === boxid);
@@ -247,7 +237,7 @@ console.log('get chart',error);
         }
 
     }
-     editOrgChart(t, done) {
+    editOrgChart(t, done) {
         Server
             .controller('ochart', 'edit_ochart', {
             boxid: t.boxid,
@@ -267,8 +257,8 @@ console.log('get chart',error);
             })
 
     }
-     addOrgChart(parent, t, done) {
-        console.log('-99-/*10/*/99-',parent,t,done);
+    addOrgChart(parent, t, done) {
+        
         Server
             .controller('ochart', 'add_ochart', {
             scopeid: parent.scopeid,
@@ -288,10 +278,10 @@ console.log('get chart',error);
         })
             .then(r => {
                 done(r.data);
-                console.log('-99-/*11/*/99-',r.data);
+                
             })
     }
-     deleteOrgChart(box, done) {
+    deleteOrgChart(box, done) {
         Server
             .controller('ochart', 'del_ochart', {boxid: box.boxid})
             .then(r => {
@@ -313,7 +303,7 @@ console.log('get chart',error);
                         }
                     return AOrgChart.types;
                 })
-                .catch(e => {})
+                //.catch(e => {})
         }
         return AOrgChart.types;
 

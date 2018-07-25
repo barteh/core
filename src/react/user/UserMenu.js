@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 
+import PropTypes from "prop-types"
+
 import {
   Card,
   CardHeader,
@@ -11,9 +13,9 @@ import {
 } from "@material-ui/core";
 import {withStyles} from "@material-ui/core/styles";
 
-import { doLogout} from '../commonServices/useraction';
+import { doLogout} from '../../commonServices/useraction';
 
-import UserAvatar from './user-avatar';
+import UserAvatar from './UserAvatar';
 
 import {Link} from 'react-router-dom';
 
@@ -43,7 +45,7 @@ class UserMenu extends PureComponent {
       this.sub.unsubscribe();
     }
   
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
     
       this.setState({uinfo: this.props.userinfo});
 
@@ -56,7 +58,7 @@ class UserMenu extends PureComponent {
       .onClose();
   }
   render() {
-    const {classes} = this.props;
+    
     const {open, target} = this.props;
     const {uinfo} = this.state;
 
@@ -75,7 +77,7 @@ class UserMenu extends PureComponent {
           vertical: "top",
           horizontal: "center"
         }}>
-          <Card className={classes.card}>
+          <Card >
 
           {uinfo &&  <CardHeader title={uinfo.fullname} subheader={"نام کاربری: " + uinfo.userId}/>}
             <CardContent >
@@ -99,6 +101,14 @@ class UserMenu extends PureComponent {
       </div>
     );
   }
+}
+
+UserMenu.propTypes={
+  userinfo:PropTypes.any,
+  onClose:PropTypes.func,
+  open:PropTypes.func, 
+  target:PropTypes.any
+
 }
 
 export default withStyles(styles)(UserMenu);

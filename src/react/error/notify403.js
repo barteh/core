@@ -5,9 +5,9 @@ import { Snackbar
 
 import {withStyles} from "@material-ui/core/styles"
 
-import PropTypes from "prop-types";
+
 import {Server} from '@barteh/as-service';
-const styles = theme => ({
+const styles = () => ({
  errorsnack:{
      backgroundColor:"red",
      color:"white",
@@ -29,7 +29,7 @@ class Notify403 extends PureComponent {
     this.setState({ open: false });
   }
   render() {
-    const { classes } = this.props;
+    //const { classes } = this.props;
     const { open } = this.state;
     return (
       <div>

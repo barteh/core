@@ -13,7 +13,7 @@ import {
 
 export default function (Comp) {
 
-    return  class extends Component {
+    return  class withMessage extends Component {
 
         constructor(props) {
             super(props);

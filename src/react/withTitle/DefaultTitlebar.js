@@ -8,6 +8,9 @@ import {
   
 
 } from "@material-ui/core";
+
+import PropTypes from 'prop-types';
+
 export default class DefaultTitleBar extends React.PureComponent {
     render() {
       const {title, subTitle, description, AIcon, hasIcon} = this.props;
@@ -56,4 +59,12 @@ export default class DefaultTitleBar extends React.PureComponent {
         </div>
       );
     }
+  }
+
+  DefaultTitleBar.propTypes = {
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
+    description: PropTypes.string,
+    AIcon: PropTypes.Component,
+    hasIcon:PropTypes.bool
   }

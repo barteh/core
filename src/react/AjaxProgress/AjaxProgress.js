@@ -9,7 +9,7 @@ class AjaxProgress extends PureComponent {
     Server.start = this.start.bind(this);
     Server.end = this.end.bind(this);
   }
-  start(cnt) {
+  start() {
       
         this.setState({ show: true });      
       
