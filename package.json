@@ -1,13 +1,14 @@
 {
   "name": "@barteh/core",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "a common library for barteh based projects",
   "main": "index.js",
   "scripts": {
     "test": "npm run build",
     "build": "npm run lint && babel src -d ./ && babel index.d.js -o index.js",
     "up": "npm publish --access public --scope=barteh",
-    "lint": "./node_modules/.bin/eslint src/**/*.js && echo \"eslint code is ok\""
+    "lint": "./node_modules/.bin/eslint src/**/*.js && echo \"eslint code is ok\"",
+    "bt-update":"npm update @barteh-as-service -S"
   },
   "dependencies": {
     "@barteh/as-service": "^1.0.237",

@@ -6,5 +6,5 @@ src
 .eslintrc
 .eslintignore
 .babelrc
-
+node_modules
 
