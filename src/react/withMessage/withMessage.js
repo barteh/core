@@ -11,9 +11,9 @@ import {
 
 } from '@material-ui/core';
 
-export default function (Comp) {
+ export default  function withMessage (Comp) {
 
-    return  class withMessage extends Component {
+    return  class HOC extends Component {
 
         constructor(props) {
             super(props);
@@ -166,3 +166,5 @@ export default function (Comp) {
         }
     };
 }
+
+

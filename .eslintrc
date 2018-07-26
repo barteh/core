@@ -9,6 +9,10 @@
     "browser": true
   },
   "rules": {
+    
+    
+    "import/no-unresolved": [1, {"commonjs": true, "amd": true}],
+    
     "no-console": "off",
     "no-unused-vars": "warn",
 
@@ -22,6 +26,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "import"
   ]
 }

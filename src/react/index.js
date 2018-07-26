@@ -1,7 +1,7 @@
-export * from "./AjaxProgress";
+export {AjaxProgress} from "./AjaxProgress";
 export * from "./error";
 export * from "./withTitle";
 
 export * from "./user"
 
-export * from "./withMessage";
+export {withMessage} from "./withMessage";

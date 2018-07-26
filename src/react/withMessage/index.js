@@ -1,2 +1,3 @@
-export {default} from "./withMessage";
-export *  from "./withMessage"
+
+export {default } from "./withMessage";
+export {default as withMessage} from "./withMessage";

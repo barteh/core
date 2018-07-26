@@ -6,7 +6,7 @@ import Captcha from "./Captcha";
 
 import {doChangePass} from "../../commonServices/useraction";
 
-import withMessage from '../withMessage';
+import {withMessage} from '../withMessage';
 
 import PropTypes from 'prop-types';
 

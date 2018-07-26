@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { LinearProgress } from "@material-ui/core";
 import {Server} from '@barteh/as-service';
 
-class AjaxProgress extends PureComponent {
+ export class AjaxProgress extends PureComponent {
   constructor() {
     super();
     this.state = { show: false };

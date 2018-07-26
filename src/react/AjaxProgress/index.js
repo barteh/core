@@ -1,2 +1,2 @@
-export {default} from "./AjaxProgress"
-export * from "./AjaxProgress"
+export {default as AjaxProgress} from "./AjaxProgress"
+export {default } from "./AjaxProgress"

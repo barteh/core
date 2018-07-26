@@ -69,8 +69,8 @@ class Captcha extends Component {
     }
 }
 Captcha.propTypes = {
-    classes: PropTypes.object.isRequired,
-    onRef: PropTypes.object
+    classes: PropTypes.any,
+    onRef: PropTypes.any
 };
 
 export default withStyles(styles)(Captcha);
