@@ -17,6 +17,7 @@
     "no-unused-vars": "warn",
 
     "react/display-name": [2],
+    "react/prop-types": [0],
     "max-len": [1, 190, 2, {
       "ignoreComments": true
     }],

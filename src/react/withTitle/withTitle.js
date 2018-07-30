@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Slide,  Typography, Divider, Grid} from "@material-ui/core";
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 /**
  * @deprecated default title bar
  */
@@ -55,13 +55,13 @@ export class DefaultTitleBar extends React.PureComponent {
   }
 }
 
-DefaultTitleBar.propTypes = {
-  title: PropTypes.string,
-  subTitle: PropTypes.string,
-  description: PropTypes.string,
-  AIcon: PropTypes.Component,
-  hasIcon:PropTypes.bool
-}
+// DefaultTitleBar.propTypes = {
+//   title: PropTypes.string,
+//   subTitle: PropTypes.string,
+//   description: PropTypes.string,
+//   AIcon: PropTypes.Component,
+//   hasIcon:PropTypes.object
+// }
 
 /**
  *
