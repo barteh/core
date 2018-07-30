@@ -8,7 +8,7 @@ import {doChangePass} from "../../commonServices/useraction";
 
 import {withMessage} from '../withMessage';
 
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 
 const styles = theme => ({
@@ -267,10 +267,10 @@ class changePass extends Component {
     }
 }
 
-changePass.propTypes={
-    classes:PropTypes.any,
-    messageService:PropTypes.any,
-    doChangePass:PropTypes.func
-}
+// changePass.propTypes={
+//     classes:PropTypes.any,
+//     messageService:PropTypes.any,
+//     doChangePass:PropTypes.func
+// }
 
 export default withMessage(withStyles(styles)(changePass));

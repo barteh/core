@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 
-import PropTypes from "prop-types"
+//import PropTypes from "prop-types"
 
 import {
   Card,
@@ -103,12 +103,12 @@ class UserMenu extends PureComponent {
   }
 }
 
-UserMenu.propTypes={
-  userinfo:PropTypes.any,
-  onClose:PropTypes.func,
-  open:PropTypes.bool, 
-  target:PropTypes.any
+// UserMenu.propTypes={
+//   userinfo:PropTypes.any,
+//   onClose:PropTypes.func,
+//   open:PropTypes.bool, 
+//   target:PropTypes.any
 
-}
+// }
 
 export default withStyles(styles)(UserMenu);

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { withStyles } from "@material-ui/core/styles";
 
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 
 import { Person } from "@material-ui/icons";
@@ -61,10 +61,10 @@ class UserAvatar extends Component {
   }
 }
 
-UserAvatar.propTypes={
-classes:PropTypes.any,
-size:PropTypes.string
+// UserAvatar.propTypes={
+// classes:PropTypes.any,
+// size:PropTypes.string
 
-};
+// };
 
 export default withStyles(styles)(UserAvatar);

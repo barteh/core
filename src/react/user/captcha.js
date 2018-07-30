@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {withStyles} from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 const styles = () => ({
     root: {
         textAlign: 'center',
@@ -68,9 +68,9 @@ class Captcha extends Component {
         );
     }
 }
-Captcha.propTypes = {
-    classes: PropTypes.any,
-    onRef: PropTypes.any
-};
+// Captcha.propTypes = {
+//     classes: PropTypes.any,
+//     onRef: PropTypes.any
+// };
 
 export default withStyles(styles)(Captcha);

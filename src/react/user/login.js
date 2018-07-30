@@ -12,7 +12,7 @@ import {
 
 import Captcha from "./Captcha";
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 class login extends React.Component {
@@ -201,11 +201,11 @@ success = 0,
   }
 }
 
-login.propTypes={
-  loginSuccess:PropTypes.func,
-  doLogin:PropTypes.func,
-  done:PropTypes.func
+// login.propTypes={
+//   loginSuccess:PropTypes.func,
+//   doLogin:PropTypes.func,
+//   done:PropTypes.func
 
-}
+// }
 
 export default login;
