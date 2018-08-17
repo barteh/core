@@ -11,9 +11,9 @@ import {
 
 } from '@material-ui/core';
 
- export default  function withMessage (Comp) {
+export default function withMessage(Comp) {
 
-    return  class HOC extends Component {
+    return class HOC extends Component {
 
         constructor(props) {
             super(props);
@@ -22,7 +22,7 @@ import {
                 confirmOpen: false,
                 confirmObject: {}
             }
-            this.messageService={};
+            this.messageService = {};
             this.messageService.confirm = this
                 .confirm
                 .bind(this);
@@ -48,7 +48,12 @@ import {
         confirm(obj) {
             obj.type = obj.type || "primary"; // secondary, error
 
+
             this.setState({confirmOpen: true, confirmObject: obj});
+            return new Promise((res, rej) => {
+                this.confirmPromisResolve = res;
+                this.confirmPromisReject = rej;
+            })
 
         }
 
@@ -61,20 +66,41 @@ import {
         }
 
         handleOk() {
-            if (this.state.confirmObject.onOk) 
-                this.state.confirmObject.onOk();
+
+            if (this.state.confirmObject.onOk) {
+                const result = this
+                    .state
+                    .confirmObject
+                    .onOk();
+                if (result instanceof Promise) {
+                     result.then(a => {
+                        this.confirmPromisResolve(a);
+                        return a;
+                    })
+                } else {
+                    this.confirmPromisResolve(result);
+
+                }
+
+            }
             this.handleCloseConfirm();
+            this.confirmPromisResolve(undefined);
+
         }
         handleCancel() {
-            
-            if (this.state.confirmObject.onCancel) 
-                this.state.confirmObject.onCancel();
-                this.handleCloseConfirm()    
+
+            if (this.state.confirmObject.onCancel) {
+                this
+                    .state
+                    .confirmObject
+                    .onCancel();
+                this.handleCloseConfirm()
+            }
         }
 
         handleCloseConfirm() {
             this.setState({confirmOpen: false});
-            
+
         }
 
         handleCloseNotify() {
@@ -108,7 +134,7 @@ import {
                         color: "white"
                     }
             }
-            ret.fontSize="14px";
+            ret.fontSize = "14px";
             return ret;
         }
 
@@ -117,7 +143,9 @@ import {
 
                 <Comp messageService={this.messageService} {...this.props}/>
                 <Snackbar
-                style={{zIndex:"1455"}}
+                    style={{
+                    zIndex: "1455"
+                }}
                     anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'center'
@@ -131,7 +159,9 @@ import {
                 }}/>
 
                 <Dialog
-                style={{zIndex:"1350"}}
+                    style={{
+                    zIndex: "1350"
+                }}
                     open={this.state.confirmOpen}
                     onClose={this.handleCancel}
                     aria-labelledby="alert-dialog-title"
@@ -139,12 +169,9 @@ import {
                     <DialogTitle
                         id="alert-dialog-title"
                         style={this.headerColor(this.state.confirmObject.type)}
-                        disableTypography
-                        >
-                        
-                            {this.state.confirmObject.title}
-                            
-                        
+                        disableTypography>
+
+                        {this.state.confirmObject.title}
 
                     </DialogTitle>
                     <DialogContent>
@@ -166,5 +193,3 @@ import {
         }
     };
 }
-
-
