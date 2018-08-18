@@ -53,12 +53,12 @@ export default function withMessage(Comp) {
             return new Promise((res, rej) => {
                 this.confirmPromisResolve = res;
                 this.confirmPromisReject = rej;
-            })
+            });
 
         }
 
         notify(message, type) {
-            console.log('sssss')
+            
             let intype = type || "primary"; // secondary, error
 
             this.setState({notifyOpen: true, notifyMessage: message, notifyType: intype});
@@ -66,36 +66,43 @@ export default function withMessage(Comp) {
         }
 
         handleOk() {
-
+         
             if (this.state.confirmObject.onOk) {
                 const result = this
                     .state
                     .confirmObject
                     .onOk();
+
+                  
                 if (result instanceof Promise) {
-                     result.then(a => {
-                        this.confirmPromisResolve(a);
-                        return a;
+                    
+                     result.then(a => { 
+                        this.confirmPromisResolve(a); 
+                        
                     })
+                    .catch(e=>{
+                         
+                        this.confirmPromisReject(e)})
                 } else {
+                    
                     this.confirmPromisResolve(result);
 
                 }
 
             }
             this.handleCloseConfirm();
-            this.confirmPromisResolve(undefined);
 
         }
         handleCancel() {
-
+            
             if (this.state.confirmObject.onCancel) {
                 this
                     .state
                     .confirmObject
                     .onCancel();
-                this.handleCloseConfirm()
+               
             }
+            this.handleCloseConfirm();
         }
 
         handleCloseConfirm() {
