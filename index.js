@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("./src/react");
+var _react = require("./react");
 
 Object.keys(_react).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -16,15 +16,14 @@ Object.keys(_react).forEach(function (key) {
   });
 });
 
-var _commonService = require("./src/commonService");
+var _commonServices = require("./commonServices");
 
-Object.keys(_commonService).forEach(function (key) {
+Object.keys(_commonServices).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _commonService[key];
+      return _commonServices[key];
     }
   });
 });
-var t = 8;

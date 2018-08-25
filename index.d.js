@@ -1,4 +1,3 @@
-export * from "./src/react";
-export * from "./src/commonService";
+export * from "./react";
+export * from "./commonServices";
 
-var t=8;
