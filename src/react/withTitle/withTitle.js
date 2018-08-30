@@ -1,6 +1,14 @@
 import React from "react";
 
-import {Slide, Typography, Divider, Grid} from "@material-ui/core";
+//import {Slide, Typography, Divider, Grid} from "@material-ui/core";
+import Slide from "@material-ui/core/Slide";
+import  Typography from "@material-ui/core/Typography";
+import  Divider from "@material-ui/core/Divider";
+import  Grid from "@material-ui/core/Grid";
+
+
+
+
 //import PropTypes from 'prop-types';
 /**
  * @deprecated default title bar

@@ -1,6 +1,6 @@
 {
   "name": "@barteh/core",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "description": "a common library for barteh based projects",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,9 @@
     "bt-update": "npm i @barteh/as-service@latest -S"
   },
   "dependencies": {
-    "@barteh/as-service": "^1.0.34",
-    "@material-ui/core": "^1.4.1",
-    "@material-ui/icons": "^2.0.0",
+    "@barteh/as-service": "^1.0.42",
+    "@material-ui/core": "^3.0.1",
+    "@material-ui/icons": "^3.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

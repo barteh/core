@@ -1,15 +1,15 @@
 import React, {Component} from "react";
 
-import {
-    Dialog,
-    Button,
-    Snackbar,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle
+//import {Dialog,Button,Snackbar,DialogActions,DialogContent,DialogContentText,DialogTitle} from '@material-ui/core';
 
-} from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 export default function withMessage(Comp) {
 
@@ -48,7 +48,6 @@ export default function withMessage(Comp) {
         confirm(obj) {
             obj.type = obj.type || "primary"; // secondary, error
 
-
             this.setState({confirmOpen: true, confirmObject: obj});
             return new Promise((res, rej) => {
                 this.confirmPromisResolve = res;
@@ -58,7 +57,7 @@ export default function withMessage(Comp) {
         }
 
         notify(message, type) {
-            
+
             let intype = type || "primary"; // secondary, error
 
             this.setState({notifyOpen: true, notifyMessage: message, notifyType: intype});
@@ -66,25 +65,24 @@ export default function withMessage(Comp) {
         }
 
         handleOk() {
-         
+
             if (this.state.confirmObject.onOk) {
                 const result = this
                     .state
                     .confirmObject
                     .onOk();
 
-                  
                 if (result instanceof Promise) {
-                    
-                     result.then(a => { 
-                        this.confirmPromisResolve(a); 
-                        
+
+                    result.then(a => {
+                        this.confirmPromisResolve(a);
+
+                    }).catch(e => {
+
+                        this.confirmPromisReject(e)
                     })
-                    .catch(e=>{
-                         
-                        this.confirmPromisReject(e)})
                 } else {
-                    
+
                     this.confirmPromisResolve(result);
 
                 }
@@ -94,13 +92,13 @@ export default function withMessage(Comp) {
 
         }
         handleCancel() {
-            
+
             if (this.state.confirmObject.onCancel) {
                 this
                     .state
                     .confirmObject
                     .onCancel();
-               
+
             }
             this.handleCloseConfirm();
         }

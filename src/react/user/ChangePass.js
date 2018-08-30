@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, TextField, Grid, Typography, Paper} from '@material-ui/core';
-import {withStyles} from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 import Captcha from "./Captcha";
 

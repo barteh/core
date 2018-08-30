@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 import Avatar from "@material-ui/core/Avatar";
-import { withStyles } from "@material-ui/core/styles";
+import  withStyles  from "@material-ui/core/styles/withStyles";
 
 //import PropTypes from 'prop-types';
 
 
-import { Person } from "@material-ui/icons";
+import  Person  from "@material-ui/icons/Person";
 
 const styles = () => {
 
