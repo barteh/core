@@ -1,7 +1,6 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 class ErrorBoundary extends React.Component {
   static logger = (e, i) => {
@@ -28,7 +27,7 @@ class ErrorBoundary extends React.Component {
       if (this.props.component) return this.props.component;
       else return <div><h1>خطای سیستمی</h1>
       <div>
-      <Link to="/">صفحه اصلی</Link>
+      <a href="/" onClick={window.location.replace("/")}>صفحه اصلی</a>
       </div>
       </div>;
     }
@@ -36,11 +35,11 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-ErrorBoundary.propTypes={
-  children:PropTypes.any,
-  component:PropTypes.func,
-  handler:PropTypes.func,
-  dontLog:PropTypes.bool
-}
+// ErrorBoundary.propTypes={
+//   children:PropTypes.any,
+//   component:PropTypes.func,
+//   handler:PropTypes.func,
+//   dontLog:PropTypes.bool
+// }
 
 export default ErrorBoundary;
