@@ -9,11 +9,11 @@ import {
   CardContent,
   Popover,
   Button
-  
+
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import { doLogout} from '../../commonServices/useraction';
+import {doLogout} from '../../commonServices/useraction';
 
 import UserAvatar from './UserAvatar';
 
@@ -34,20 +34,22 @@ class UserMenu extends PureComponent {
     this.handleClose = this
       .handleClose
       .bind(this);
-
-    this.state.uinfo = {};
+    this.logOut = this
+      .logOut
+      .bind(this);
 
   }
 
-  componentWillUnmount() {
-    
-    if (this.sub) 
-      this.sub.unsubscribe();
-    }
-  
-    UNSAFE_componentWillMount() {
-    
-      this.setState({uinfo: this.props.userinfo});
+  logOut() {
+    doLogout(
+      () => {
+        this
+          .props
+          .userinfoService
+          .refresh()
+        }
+
+    );
 
   }
 
@@ -58,9 +60,8 @@ class UserMenu extends PureComponent {
       .onClose();
   }
   render() {
-    
-    const {open, target} = this.props;
-    const {uinfo} = this.state;
+
+    const {open, target, userinfo} = this.props;
 
     return (
       <div>
@@ -79,7 +80,9 @@ class UserMenu extends PureComponent {
         }}>
           <Card >
 
-          {uinfo &&  <CardHeader title={uinfo.fullname} subheader={"نام کاربری: " + uinfo.userId}/>}
+            {userinfo && <CardHeader
+              title={userinfo.fullname}
+              subheader={"نام کاربری: " + userinfo.userId}/>}
             <CardContent >
               <div style={{
                 textAlign: "center"
@@ -88,7 +91,10 @@ class UserMenu extends PureComponent {
               </div>
             </CardContent>
             <CardActions>
-              <Button size="small" color="primary" onClick={() => doLogout(()=>{this.props.userinfo.refresh()})}>
+              <Button
+                size="small"
+                color="primary"
+                onClick={this.doLogout}>
                 خروج
               </Button>
               <Button size="small" color="primary" component={Link} to="/changepass">
@@ -103,12 +109,7 @@ class UserMenu extends PureComponent {
   }
 }
 
-// UserMenu.propTypes={
-//   userinfo:PropTypes.any,
-//   onClose:PropTypes.func,
-//   open:PropTypes.bool, 
-//   target:PropTypes.any
-
-// }
+// UserMenu.propTypes={   userinfo:PropTypes.any,   onClose:PropTypes.func,
+// open:PropTypes.bool,   target:PropTypes.any }
 
 export default withStyles(styles)(UserMenu);
