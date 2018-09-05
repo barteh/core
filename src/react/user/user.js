@@ -2,7 +2,9 @@ import React, {PureComponent} from "react";
 import UserAvatar from "./UserAvatar";
 // import { Manager, Target, Popper } from "react-popper"; import PropTypes from
 // 'prop-types';
+import PropTypes from 'prop-types';
 import UserMenu from './UserMenu';
+
 class User extends PureComponent {
   constructor(props) {
     super(props);
@@ -23,7 +25,8 @@ class User extends PureComponent {
     const userinfoService = this.props.userinfo;
     this.sub = userinfoService
       .Observable()
-      .subscribe(a => this.setState({userinfo: a}));
+      .subscribe(a =>{
+        this.setState({userinfo: a})});
   }
 
   handlePopoverToggle = event => {
@@ -65,5 +68,5 @@ class User extends PureComponent {
   }
 }
 
-// User.propTypes={   userinfo:PropTypes.any };
+ User.propTypes={   userinfo:PropTypes.object.isRequired };
 export default User;

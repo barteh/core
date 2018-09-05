@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-
+import PropTypes from 'prop-types';
 //import PropTypes from "prop-types"
 
 import {
@@ -62,7 +62,6 @@ class UserMenu extends PureComponent {
   render() {
 
     const {open, target, userinfo} = this.props;
-
     return (
       <div>
 
@@ -94,7 +93,7 @@ class UserMenu extends PureComponent {
               <Button
                 size="small"
                 color="primary"
-                onClick={this.doLogout}>
+                onClick={this.logOut}>
                 خروج
               </Button>
               <Button size="small" color="primary" component={Link} to="/changepass">
@@ -111,5 +110,15 @@ class UserMenu extends PureComponent {
 
 // UserMenu.propTypes={   userinfo:PropTypes.any,   onClose:PropTypes.func,
 // open:PropTypes.bool,   target:PropTypes.any }
+
+ UserMenu.propTypes={   
+   userinfo:PropTypes.object.isRequired,
+   userinfoService:PropTypes.object.isRequired,
+      //onClose:PropTypes.func.is,
+ 
+  //  target:PropTypes.any 
+  }
+
+
 
 export default withStyles(styles)(UserMenu);
