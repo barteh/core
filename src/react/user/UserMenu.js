@@ -111,13 +111,13 @@ class UserMenu extends PureComponent {
 // UserMenu.propTypes={   userinfo:PropTypes.any,   onClose:PropTypes.func,
 // open:PropTypes.bool,   target:PropTypes.any }
 
- UserMenu.propTypes={   
-   userinfo:PropTypes.object.isRequired,
-   userinfoService:PropTypes.object.isRequired,
-      //onClose:PropTypes.func.is,
+//  UserMenu.propTypes={   
+//    userinfo:PropTypes.object.isRequired,
+//    userinfoService:PropTypes.object.isRequired,
+//       //onClose:PropTypes.func.is,
  
-  //  target:PropTypes.any 
-  }
+//   //  target:PropTypes.any 
+//   }
 
 
 
