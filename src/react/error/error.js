@@ -9,8 +9,11 @@ class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
+    this.reload=this.reload.bind(this);
   }
-
+reload(){
+  window.location.replace("/")
+}
   componentDidCatch(error, info) {
     
     // Display fallback UI
@@ -27,7 +30,7 @@ class ErrorBoundary extends React.Component {
       if (this.props.component) return this.props.component;
       else return <div><h1>خطای سیستمی</h1>
       <div>
-      <a href="/" onClick={window.location.replace("/")}>صفحه اصلی</a>
+      <a href="/" onClick={this.reload}>صفحه اصلی</a>
       </div>
       </div>;
     }
