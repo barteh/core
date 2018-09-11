@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 
-//import {Dialog,Button,Snackbar,DialogActions,DialogContent,DialogContentText,DialogTitle} from '@material-ui/core';
+// import
+// {Dialog,Button,Snackbar,DialogActions,DialogContent,DialogContentText,DialogT
+// i tle} from '@material-ui/core';
 
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
@@ -9,7 +11,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import Slide from '@material-ui/core/Slide';
 
+function Transition(props) {
+    return <Slide direction="up" {...props}/>;
+}
 
 export default function withMessage(Comp) {
 
@@ -45,8 +53,15 @@ export default function withMessage(Comp) {
                 .bind(this);
         }
 
-        confirm(obj) {
+        confirm(inobj) {
+            const obj = typeof inobj === "string"
+                ? {
+                    body: inobj
+                }
+                : inobj;
             obj.type = obj.type || "primary"; // secondary, error
+                obj.okTitle=obj.okTitle || "قبول";
+                obj.cancelTitle=obj.cancelTitle || "لغو";
 
             this.setState({confirmOpen: true, confirmObject: obj});
             return new Promise((res, rej) => {
@@ -87,6 +102,8 @@ export default function withMessage(Comp) {
 
                 }
 
+            } else {
+                this.confirmPromisResolve(true);
             }
             this.handleCloseConfirm();
 
@@ -99,6 +116,8 @@ export default function withMessage(Comp) {
                     .confirmObject
                     .onCancel();
 
+            } else {
+                this.confirmPromisResolve(false);
             }
             this.handleCloseConfirm();
         }
@@ -118,19 +137,22 @@ export default function withMessage(Comp) {
                 case type = "primary":
                     ret = {
                         backgroundColor: "green",
-                        color: "white"
+                        color: "white",
+                        minWidth: "40vh"
                     }
                     break;
                 case type = "secondary":
                     ret = {
-                        backgroundColor: "orange",
-                        color: "white"
+                        backgroundColor: "#5e0ce7",
+                        color: "white",
+                        minWidth: "40vh"
                     }
                     break;
                 case type = "error":
                     ret = {
-                        backgroundColor: "#880000",
-                        color: "white"
+                        backgroundColor: "red",
+                        color: "white",
+                        minWidth: "40vh"
                     }
                     break;
                 default:
@@ -161,35 +183,65 @@ export default function withMessage(Comp) {
                     message={this.state.notifyMessage}
                     ContentProps={{
                     "style": this.headerColor(this.state.notifyType)
+                }}></Snackbar>
+
+                <Snackbar
+                    style={{
+                    zIndex: "1455"
+                }}
+                    anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center'
+                }}
+                    onClose={this.handleCloseNotify}
+                    autoHideDuration={3000}
+                    open={this.state.notifyOpen}
+                    message={this.state.notifyMessage}
+                    ContentProps={{
+                    "style": this.headerColor(this.state.notifyType)
                 }}/>
 
                 <Dialog
                     style={{
                     zIndex: "1350"
                 }}
+                    maxWidth={false}
+                    TransitionComponent={Transition}
                     open={this.state.confirmOpen}
                     onClose={this.handleCancel}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-                    <DialogTitle
-                        id="alert-dialog-title"
-                        style={this.headerColor(this.state.confirmObject.type)}
-                        disableTypography>
+                    <DialogTitle>
 
-                        {this.state.confirmObject.title}
-
+                        <Typography noWrap color={this.state.confirmObject.type}>
+                            {this.state.confirmObject.title}
+                        </Typography>
                     </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
+
+                    <DialogContent
+                        style={{
+                        minWidth: "30vw",
+                        minHeight: "10vh"
+                    }}>
+                        {typeof this.state.confirmObject.body === "string" && <DialogContentText id="alert-dialog-description">
+
                             {this.state.confirmObject.body}
-                        </DialogContentText>
+
+                        </DialogContentText>}
+
+                        {typeof this.state.confirmObject.body !== "string" && <div id="alert-dialog-description">
+
+                            {this.state.confirmObject.body}
+
+                        </div>}
                     </DialogContent>
-                    <DialogActions>
+                    <Divider/>
+                    <DialogActions >
                         <Button onClick={this.handleOk} color="primary" autoFocus>
-                            قبول
+                {this.state.confirmObject.okTitle}
                         </Button>
                         <Button onClick={this.handleCancel} color="secondary">
-                            لغو
+                        {this.state.confirmObject.cancelTitle}
                         </Button>
                     </DialogActions>
                 </Dialog>
