@@ -1,7 +1,7 @@
 {
   "name": "@barteh/core",
-  "version": "1.0.44",
-  
+  "version": "1.0.45",
+
   "description": "a common library for barteh based projects",
   "main": "index.js",
   "scripts": {

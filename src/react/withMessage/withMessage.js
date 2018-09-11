@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 // import
 // {Dialog,Button,Snackbar,DialogActions,DialogContent,DialogContentText,DialogT
@@ -21,7 +21,11 @@ function Transition(props) {
 
 export default function withMessage(Comp) {
 
-    return class HOC extends Component {
+
+    
+
+
+    return class HOC extends React.PureComponent {
 
         constructor(props) {
             super(props);
@@ -60,8 +64,8 @@ export default function withMessage(Comp) {
                 }
                 : inobj;
             obj.type = obj.type || "primary"; // secondary, error
-                obj.okTitle=obj.okTitle || "قبول";
-                obj.cancelTitle=obj.cancelTitle || "لغو";
+            obj.okTitle = obj.okTitle || "قبول";
+            obj.cancelTitle = obj.cancelTitle || "لغو";
 
             this.setState({confirmOpen: true, confirmObject: obj});
             return new Promise((res, rej) => {
@@ -80,12 +84,33 @@ export default function withMessage(Comp) {
         }
 
         handleOk() {
+            
+            const {onOk} = this.state.confirmObject;
+            if (onOk) {
+                if (onOk instanceof Promise) {
+                   
+                   onOk.then(a=>{
+                     
+                        this.confirmPromisResolve(a);
+                        
+                    })
+                    .catch(e => {
 
-            if (this.state.confirmObject.onOk) {
-                const result = this
-                    .state
-                    .confirmObject
-                    .onOk();
+                        this.confirmPromisReject(e)
+                    });
+                    //return onOk;
+                }
+
+                const result = onOk();
+                if(result instanceof Promise){
+                   result
+                    .then(a=>this.confirmPromisResolve(a))
+                    .catch(e => {
+
+                        this.confirmPromisReject(e)
+                    });
+            
+                }
 
                 if (result instanceof Promise) {
 
@@ -95,10 +120,12 @@ export default function withMessage(Comp) {
                     }).catch(e => {
 
                         this.confirmPromisReject(e)
-                    })
+                    });
+            
                 } else {
 
                     this.confirmPromisResolve(result);
+                    
 
                 }
 
@@ -106,11 +133,12 @@ export default function withMessage(Comp) {
                 this.confirmPromisResolve(true);
             }
             this.handleCloseConfirm();
+            
 
         }
         handleCancel() {
-
-            if (this.state.confirmObject.onCancel) {
+            const {onCancel} = this.state.confirmObject;
+            if (onCancel) {
                 this
                     .state
                     .confirmObject
@@ -238,10 +266,10 @@ export default function withMessage(Comp) {
                     <Divider/>
                     <DialogActions >
                         <Button onClick={this.handleOk} color="primary" autoFocus>
-                {this.state.confirmObject.okTitle}
+                            {this.state.confirmObject.okTitle}
                         </Button>
                         <Button onClick={this.handleCancel} color="secondary">
-                        {this.state.confirmObject.cancelTitle}
+                            {this.state.confirmObject.cancelTitle}
                         </Button>
                     </DialogActions>
                 </Dialog>
