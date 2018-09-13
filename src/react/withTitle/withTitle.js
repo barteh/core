@@ -5,6 +5,7 @@ import Slide from "@material-ui/core/Slide";
 import  Typography from "@material-ui/core/Typography";
 import  Divider from "@material-ui/core/Divider";
 import  Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 
 
 
@@ -19,6 +20,12 @@ export class DefaultTitleBar extends React.PureComponent {
     const Icon=()=>icon;
     return (
       <div>
+      <Hidden mdUp>
+      
+      <div style={{marginTop:17}}></div>
+      </Hidden>
+
+      
         <Grid container>
           <Grid
             item
@@ -33,7 +40,7 @@ export class DefaultTitleBar extends React.PureComponent {
             {icon && <Icon/>}
           </Grid>
 
-          <Grid item lg={5} xl={5} md={5} sm={5} xs={5}>
+          <Grid item lg={5} xl={5} md={5} sm={10} xs={10}>
             <div>
              {title && <Typography variant="title" color="primary" noWrap={true}>
                  {title}
@@ -43,7 +50,7 @@ export class DefaultTitleBar extends React.PureComponent {
               </Typography>}
             </div>
           </Grid>
-          <Grid item lg={6} xl={6} md={6} sm={5} xs={5}>
+          <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
             <div>
             {description &&  <Typography
                 align="justify"
@@ -51,7 +58,8 @@ export class DefaultTitleBar extends React.PureComponent {
                 paragraph
                 color="default"
                 style={{
-                textIndent: "5pt"
+                textIndent: "5pt",
+                padding:"7px"
               }}>
                 {description}
               </Typography>}
