@@ -14,16 +14,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Slide from '@material-ui/core/Slide';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 function Transition(props) {
     return <Slide direction="up" {...props}/>;
 }
 
-export default function withMessage(Comp) {
-
-
-    
-
+export default withMobileDialog()(function withMessage(Comp) {
 
     return class HOC extends React.PureComponent {
 
@@ -66,7 +63,7 @@ export default function withMessage(Comp) {
             obj.type = obj.type || "primary"; // secondary, error
             obj.okTitle = obj.okTitle || "قبول";
             obj.cancelTitle = obj.cancelTitle || "لغو";
-
+            obj.size = obj.size || "normal"; //responsice | fullscreen
             this.setState({confirmOpen: true, confirmObject: obj});
             return new Promise((res, rej) => {
                 this.confirmPromisResolve = res;
@@ -84,17 +81,16 @@ export default function withMessage(Comp) {
         }
 
         handleOk() {
-            
+
             const {onOk} = this.state.confirmObject;
             if (onOk) {
                 if (onOk instanceof Promise) {
-                   
-                   onOk.then(a=>{
-                     
+
+                    onOk.then(a => {
+
                         this.confirmPromisResolve(a);
-                        
-                    })
-                    .catch(e => {
+
+                    }).catch(e => {
 
                         this.confirmPromisReject(e)
                     });
@@ -102,14 +98,14 @@ export default function withMessage(Comp) {
                 }
 
                 const result = onOk();
-                if(result instanceof Promise){
-                   result
-                    .then(a=>this.confirmPromisResolve(a))
-                    .catch(e => {
+                if (result instanceof Promise) {
+                    result
+                        .then(a => this.confirmPromisResolve(a))
+                        .catch(e => {
 
-                        this.confirmPromisReject(e)
-                    });
-            
+                            this.confirmPromisReject(e)
+                        });
+
                 }
 
                 if (result instanceof Promise) {
@@ -121,11 +117,10 @@ export default function withMessage(Comp) {
 
                         this.confirmPromisReject(e)
                     });
-            
+
                 } else {
 
                     this.confirmPromisResolve(result);
-                    
 
                 }
 
@@ -133,7 +128,6 @@ export default function withMessage(Comp) {
                 this.confirmPromisResolve(true);
             }
             this.handleCloseConfirm();
-            
 
         }
         handleCancel() {
@@ -194,6 +188,12 @@ export default function withMessage(Comp) {
         }
 
         render() {
+            let fulls = false;
+            if (this.confirmObject.size === "responsive") 
+                fulls = this.props.fullScreen;
+            else if (this.confirmObject.size === "fullscreen") 
+                fulls = true;
+            
             return <div>
 
                 <Comp messageService={this.messageService} {...this.props}/>
@@ -233,6 +233,9 @@ export default function withMessage(Comp) {
                     style={{
                     zIndex: "1350"
                 }}
+                    disableEscapeKeyDown={this.confirmObject.disableEscapeKeyDown}
+                    disableBackdropClick={this.confirmObject.disableBackdropClick}
+                    fullScreen={fulls}
                     maxWidth={false}
                     TransitionComponent={Transition}
                     open={this.state.confirmOpen}
@@ -277,4 +280,4 @@ export default function withMessage(Comp) {
             </div>;
         }
     };
-}
+});
