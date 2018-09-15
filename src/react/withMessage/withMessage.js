@@ -189,9 +189,9 @@ export default function withMessage(Comp) {
 
         render() {
             let fulls = false;
-            if (this.confirmObject.size === "responsive") 
+            if (this.state.confirmObject.size === "responsive") 
                 fulls = this.props.fullScreen;
-            else if (this.confirmObject.size === "fullscreen") 
+            else if (this.state.confirmObject.size === "fullscreen") 
                 fulls = true;
             
             return <div>
@@ -233,8 +233,8 @@ export default function withMessage(Comp) {
                     style={{
                     zIndex: "1350"
                 }}
-                    disableEscapeKeyDown={this.confirmObject.disableEscapeKeyDown}
-                    disableBackdropClick={this.confirmObject.disableBackdropClick}
+                    disableEscapeKeyDown={this.state.confirmObject.disableEscapeKeyDown}
+                    disableBackdropClick={this.state.confirmObject.disableBackdropClick}
                     fullScreen={fulls}
                     maxWidth={false}
                     TransitionComponent={Transition}
