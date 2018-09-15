@@ -20,9 +20,9 @@ function Transition(props) {
     return <Slide direction="up" {...props}/>;
 }
 
-export default withMobileDialog()(function withMessage(Comp) {
+export default function withMessage(Comp) {
 
-    return class HOC extends React.PureComponent {
+    return withMobileDialog()(class HOC extends React.PureComponent {
 
         constructor(props) {
             super(props);
@@ -279,5 +279,5 @@ export default withMobileDialog()(function withMessage(Comp) {
 
             </div>;
         }
-    };
-});
+    });
+}
