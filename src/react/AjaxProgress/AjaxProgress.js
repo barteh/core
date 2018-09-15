@@ -31,7 +31,7 @@ import {Server} from '@barteh/as-service';
           left: 0
         }}
       >
-        {this.state.show && <LinearProgress variant="query" />}
+        {this.state.show && <LinearProgress {...this.props} variant="query" />}
       </div>
     );
   }
