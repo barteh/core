@@ -28,7 +28,7 @@ export default class DefaultTitleBar extends React.PureComponent {
   
             <Grid item lg={5} xl={5} md={5} sm={5} xs={5}>
               <div>
-                <Typography variant="title" color="primary" noWrap={true}>
+                <Typography variant="h6" color="primary" noWrap={true}>
                   ○ {title}
                 </Typography>
                 <Typography variant="subheading" color="textSecondary" noWrap={true} paragraph>
