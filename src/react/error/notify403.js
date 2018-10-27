@@ -20,7 +20,11 @@ class Notify403 extends PureComponent {
   constructor() {
     super();
     this.handleClose = this.handleClose.bind(this);
-    Server.hook403=()=>this.setState({open:true})  
+    Server.hook403=()=>{
+      this.setState({open:true});
+    if(this.props.onShow)
+      this.props.onShow();
+    }  
   }
 
 
